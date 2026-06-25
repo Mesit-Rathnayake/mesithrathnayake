@@ -34,8 +34,8 @@ const highlights = [
 
 const stats = [
   { value: "10+", label: "Technical projects" },
-  { value: "5+", label: "Leadership roles" },
   { value: "4+", label: "Development areas" },
+  { value: "5+", label: "Leadership roles" },
   { value: "Always", label: "Learning" },
 ]
 
