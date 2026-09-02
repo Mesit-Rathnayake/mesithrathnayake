@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, useCallback } from "react"
 import { motion, useScroll, useSpring, useTransform } from "motion/react"
 
 const sections = [
@@ -15,6 +15,7 @@ function TracingBeam({ children, className = "" }) {
   const [beamHeight, setBeamHeight] = useState(600)
   const [activeSection, setActiveSection] = useState("home")
   const [sectionOffsets, setSectionOffsets] = useState([])
+  const [beamOpacity, setBeamOpacity] = useState(1)
   const beamContainerRef = useRef(null)
 
   const { scrollYProgress } = useScroll({
@@ -27,6 +28,16 @@ function TracingBeam({ children, className = "" }) {
     damping: 26,
     restDelta: 0.001,
   })
+
+  const updateBeamOpacity = useCallback(() => {
+    const scrollTop = window.scrollY
+    const docHeight = document.documentElement.scrollHeight
+    const winHeight = window.innerHeight
+    const distFromBottom = docHeight - scrollTop - winHeight
+    // Fade out over the last 200px of scroll
+    const fadeThreshold = 200
+    setBeamOpacity(Math.min(1, Math.max(0, distFromBottom / fadeThreshold)))
+  }, [])
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -46,6 +57,8 @@ function TracingBeam({ children, className = "" }) {
           setSectionOffsets(offsets)
         }
       }
+
+      updateBeamOpacity()
     }
 
     updateDimensions()
@@ -58,7 +71,7 @@ function TracingBeam({ children, className = "" }) {
       window.removeEventListener("resize", updateDimensions)
       window.removeEventListener("scroll", updateDimensions)
     }
-  }, [])
+  }, [updateBeamOpacity])
 
   useEffect(() => {
     const observerOptions = {
@@ -91,6 +104,12 @@ function TracingBeam({ children, className = "" }) {
       <div
         ref={beamContainerRef}
         className="pointer-events-none fixed bottom-12 left-3 top-28 z-40 hidden w-8 select-none flex-col items-center sm:left-4 sm:flex md:left-6 lg:left-8"
+        style={{
+          opacity: beamOpacity,
+          transition: "opacity 0.3s ease",
+          maskImage: "linear-gradient(to bottom, transparent 0%, black 6%, black 94%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 6%, black 94%, transparent 100%)",
+        }}
       >
         {/* SVG Rail and Animated Beam */}
         <svg
