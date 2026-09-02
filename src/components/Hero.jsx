@@ -33,18 +33,17 @@ function Hero() {
             Computer Engineering Undergraduate
           </p>
 
-          <h1 className="mt-5 max-w-4xl text-5xl font-bold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
-            Building intelligent,
+          <h1 className="mt-5 max-w-3xl text-5xl font-bold leading-[1.1] tracking-tight text-white sm:text-6xl lg:text-7xl">
+            I&apos;m Mesith,
             <span className="block text-neutral-500">
-              scalable and creative
+              building intelligent software.
             </span>
-            digital experiences.
           </h1>
 
           <p className="mt-7 max-w-2xl text-base leading-8 text-neutral-400 sm:text-lg">
-            I&apos;m Mesith Rathnayake, a Computer Engineering undergraduate
-            passionate about artificial intelligence, software engineering,
-            DevOps, computer vision and creative technology.
+            A Computer Engineering undergraduate passionate about artificial
+            intelligence, software engineering, DevOps, computer vision and
+            scalable systems.
           </p>
 
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">
