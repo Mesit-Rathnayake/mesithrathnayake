@@ -1,5 +1,6 @@
 import { ArrowUpRight, Mail } from "lucide-react"
 import { FaGithub, FaLinkedinIn } from "react-icons/fa"
+import TerminalCard from "./TerminalCard"
 
 const focusAreas = [
   "Artificial Intelligence",
@@ -129,17 +130,7 @@ function Hero() {
               ))}
             </div>
 
-            <div className="mt-7 rounded-2xl border border-white/5 bg-black/20 p-5">
-              <pre className="overflow-x-auto font-mono text-sm leading-7 text-neutral-400">
-                <code>
-{`const developer = {
-  engineering: true,
-  creativity: true,
-  curiosity: "always"
-}`}
-                </code>
-              </pre>
-            </div>
+            <TerminalCard className="mt-7" />
           </div>
         </div>
       </div>
