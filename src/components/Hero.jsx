@@ -54,10 +54,15 @@ function Hero() {
           <div className="glass mt-8 grid gap-6 p-5 sm:grid-cols-3">
             <div>
               <p className="label">Now</p>
-              <p className="mt-2 flex items-start gap-2">
+              <div className="mt-2 flex items-start gap-2">
                 <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                {profile.now}
-              </p>
+                <div className="flex flex-col leading-snug">
+                  <span>{profile.nowRole || "AI Engineer Intern"}</span>
+                  <span className="text-sm text-muted">
+                    {profile.nowOrg || "SLT Digital Lab"}
+                  </span>
+                </div>
+              </div>
             </div>
 
             <div>

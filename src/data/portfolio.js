@@ -3,6 +3,8 @@ export const profile = {
   headline:
     "Computer Engineering undergraduate building AI, computer vision and full-stack software.",
   now: "AI Engineer Intern, SLT Digital Lab",
+  nowRole: "AI Engineer Intern",
+  nowOrg: "SLT Digital Lab",
   location: "Sri Lanka",
   timezone: "Asia/Colombo",
   email: "mesithrathnayake0930@gmail.com",
