@@ -57,7 +57,7 @@ function ProjectRow({ project, number, open, onToggle }) {
                   {project.stack.map((tech) => (
                     <li
                       key={tech}
-                      className="border border-line px-2.5 py-1 font-mono text-xs text-muted"
+                      className="border border-line bg-petrol/20 px-2.5 py-1 font-mono text-xs text-muted"
                     >
                       {tech}
                     </li>

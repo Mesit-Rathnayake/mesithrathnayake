@@ -1,27 +1,27 @@
 import GradientASCII from "./GradientASCII"
 import Starburst from "./Starburst"
 
-/* Retro-futuristic living backdrop:
-   WebGL GradientASCII field layered behind frosted glass panels,
-   balanced with deep dark space, subtle mid-century astronomical geometry,
-   and responsive cursor wave interactions. */
+/* 60-30-10 Living Backdrop:
+   60% Pure Pitch Black Canvas (#000000)
+   30% Structural Deep Slate-Petrol Navy (#233D4D) & Light Silver (#EAECF0)
+   10% Sunset Amber-Orange Accent Flare (#FE7F2D) */
 
 function Backdrop() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
+      className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-black"
     >
-      {/* Dynamic Retro-Futuristic ASCII Gradient Field with deep dark space */}
+      {/* Dynamic Retro-Futuristic ASCII Gradient Field */}
       <div className="absolute inset-0 opacity-75">
         <GradientASCII
           colors={[
-            "#080504",
-            "#381308",
-            "#6e2b12",
-            "#b86214",
-            "#f0642b",
-            "#f0e8d8",
+            "#000000",
+            "#0d1820",
+            "#233d4d",
+            "#3a647d",
+            "#fe7f2d",
+            "#eaecf0",
           ]}
           shape="horizon"
           characters=" .:-=+*#%@"
@@ -47,20 +47,20 @@ function Backdrop() {
         />
       </div>
 
-      {/* Atmospheric vignette pulling in deeper darkness across perimeter and lower sections */}
+      {/* Atmospheric vignette pulling in 60% pure black across perimeter and lower sections */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 95% 85% at 50% 25%, transparent 20%, rgba(28, 26, 23, 0.45) 55%, rgba(28, 26, 23, 0.9) 100%)",
+            "radial-gradient(ellipse 95% 85% at 50% 25%, transparent 20%, rgba(0, 0, 0, 0.5) 55%, rgba(0, 0, 0, 0.96) 100%)",
         }}
       />
 
-      {/* Subtle mid-century / retro-space orbital geometry */}
-      <div className="absolute -top-[12vmin] -right-[12vmin] h-[58vmin] w-[58vmin] rounded-full border border-fg/10" />
-      <div className="absolute bottom-[8%] right-[10%] h-[32vmin] w-[32vmin] rounded-full border border-fg/10" />
+      {/* Subtle mid-century / retro-space orbital geometry using 30% petrol tone */}
+      <div className="absolute -top-[12vmin] -right-[12vmin] h-[58vmin] w-[58vmin] rounded-full border border-petrol/25" />
+      <div className="absolute bottom-[8%] right-[10%] h-[32vmin] w-[32vmin] rounded-full border border-petrol/25" />
       <div className="halftone absolute left-[3%] top-[16%] h-[20vmin] w-[20vmin] opacity-15" />
-      <Starburst className="slow-spin absolute bottom-[14%] right-[6%] w-[12vmin] text-fg/15" />
+      <Starburst className="slow-spin absolute bottom-[14%] right-[6%] w-[12vmin] text-petrol/40" />
     </div>
   )
 }

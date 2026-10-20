@@ -25,8 +25,8 @@ function Hero() {
               fontWeight={800}
               fontSize={600}
               letterSpacing={-0.04}
-              color="#f0e8d8"
-              accentColor="#f0642b"
+              color="#eaecf0"
+              accentColor="#fe7f2d"
               reveal="letter"
               dashLength={4}
               dashGap={2}
