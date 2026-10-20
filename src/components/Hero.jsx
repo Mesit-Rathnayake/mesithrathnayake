@@ -1,5 +1,6 @@
 import { ArrowUpRight, Mail } from "lucide-react"
 import { FaGithub, FaLinkedinIn } from "react-icons/fa"
+import TextPressure from "./TextPressure"
 import TerminalCard from "./TerminalCard"
 
 const focusAreas = [
@@ -33,12 +34,31 @@ function Hero() {
             Computer Engineering Undergraduate
           </p>
 
-          <h1 className="mt-5 max-w-3xl text-5xl font-bold leading-[1.1] tracking-tight text-white sm:text-6xl lg:text-7xl">
-            I&apos;m Mesith,
-            <span className="block text-neutral-500">
-              building intelligent software.
-            </span>
-          </h1>
+          <div className="relative my-4 h-28 w-full max-w-xl sm:h-36 md:h-44 lg:h-48">
+            <TextPressure
+              text="MESITH"
+              flex
+              alpha={false}
+              stroke={false}
+              width
+              weight
+              italic
+              radius={0.5}
+              smoothing={0.5}
+              idle="wave"
+              idleSpeed={1}
+              clickRipple
+              textColor="#ffffff"
+              strokeColor="#ff5a1f"
+              strokeWidth={3}
+              minFontSize={36}
+              scale={false}
+            />
+          </div>
+
+          <p className="text-2xl font-bold tracking-tight text-neutral-400 sm:text-3xl lg:text-4xl">
+            Building intelligent software.
+          </p>
 
           <p className="mt-7 max-w-2xl text-base leading-8 text-neutral-400 sm:text-lg">
             A Computer Engineering undergraduate passionate about artificial
