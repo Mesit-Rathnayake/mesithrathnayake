@@ -24,9 +24,9 @@ function Portrait() {
         </div>
       </div>
 
-      <figcaption className="label relative mt-7 flex items-center justify-between">
-        <span>Fig. 01</span>
-        <span>{profile.name}</span>
+      <figcaption className="label relative mt-7 flex items-center justify-between font-medium !text-white">
+        <span className="!text-white" style={{ color: "#ffffff" }}>Fig. 01</span>
+        <span className="!text-white" style={{ color: "#ffffff" }}>{profile.name}</span>
       </figcaption>
     </figure>
   )
