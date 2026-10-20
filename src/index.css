@@ -9,28 +9,34 @@
     "JetBrains Mono Variable", ui-monospace, SFMono-Regular,
     Consolas, "Liberation Mono", monospace;
 
-  --color-canvas: #09090b;
-  --color-panel: #111114;
-  --color-panel-soft: #17171b;
+  /* Warm charcoal canvas, cream ink, one burnt-orange accent. */
+  --color-bg: #1c1a17;
+  --color-fg: #f0e8d8;
+  --color-muted: #aaa190;
+  --color-dim: #7a7364;
+  --color-line: rgb(240 232 216 / 0.16);
+  --color-accent: #f0642b;
 
-  --color-brand: #f3b64d;
-  --color-brand-soft: #ffd58a;
-  --color-brand-dark: #bd7f1d;
+  /* Muted mid-century tones, used only for background geometry. */
+  --color-amber: #b9803a;
+  --color-teal: #3b7f78;
+  --color-clay: #8a4a2e;
 }
 
 :root {
   font-family: var(--font-sans);
-  color: #f5f5f5;
-  background-color: var(--color-canvas);
+  color: var(--color-fg);
+  background-color: var(--color-bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
   color-scheme: dark;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
-  background-color: var(--color-canvas);
+  scroll-padding-top: 56px;
+  background-color: var(--color-bg);
 }
 
 body {
@@ -38,28 +44,24 @@ body {
   min-width: 320px;
   min-height: 100vh;
   overflow-x: hidden;
-  background-color: var(--color-canvas);
-  background-image:
-    radial-gradient(
-      circle at 12% 8%,
-      rgba(243, 182, 77, 0.07),
-      transparent 26rem
-    ),
-    radial-gradient(
-      circle at 88% 42%,
-      rgba(249, 115, 22, 0.045),
-      transparent 30rem
-    );
-  background-attachment: fixed;
+  background-color: var(--color-bg);
+}
+
+/* Film grain over the whole page for a printed, analogue feel. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.09;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
 #root {
   min-height: 100vh;
   isolation: isolate;
-}
-
-* {
-  box-sizing: border-box;
 }
 
 img,
@@ -83,10 +85,6 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
-button {
-  cursor: pointer;
-}
-
 h1,
 h2,
 h3 {
@@ -98,92 +96,106 @@ p {
 }
 
 a,
-button,
-input,
-textarea,
-select {
+button {
   outline: none;
 }
 
 a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-  outline: 2px solid var(--color-brand);
+button:focus-visible {
+  outline: 2px solid var(--color-accent);
   outline-offset: 4px;
 }
 
 ::selection {
-  color: #09090b;
-  background-color: var(--color-brand);
+  color: var(--color-bg);
+  background-color: var(--color-accent);
 }
 
 /* Scrollbar */
 
 ::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #09090b;
+  background: var(--color-bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  border: 3px solid #09090b;
-  border-radius: 999px;
-  background: #34343a;
+  border: 3px solid var(--color-bg);
+  background: #2e2e2e;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-brand-dark);
+  background: var(--color-accent);
 }
 
-/* Hero background grid */
+/* Small mono caption used for indexes, categories and metadata. */
 
-.hero-grid {
-  background-image:
-    linear-gradient(
-      rgba(255, 255, 255, 0.026) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.026) 1px,
-      transparent 1px
-    );
-
-  background-size: 56px 56px;
-
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    black 5%,
-    rgba(0, 0, 0, 0.8) 58%,
-    transparent 100%
-  );
-
-  mask-image: linear-gradient(
-    to bottom,
-    black 5%,
-    rgba(0, 0, 0, 0.8) 58%,
-    transparent 100%
-  );
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
 }
 
-/* Shared glass effect */
+/* Frosted glass: square-cornered, warm tint, hairline edge with a lit top rim. */
 
-.glass-panel {
-  border: 1px solid rgba(255, 255, 255, 0.09);
+.glass {
   background:
     linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.055),
-      rgba(255, 255, 255, 0.018)
+      135deg,
+      rgb(240 232 216 / 0.11),
+      rgb(240 232 216 / 0.03) 60%
     );
+  border: 1px solid rgb(240 232 216 / 0.18);
+  -webkit-backdrop-filter: blur(16px) saturate(1.25);
+  backdrop-filter: blur(16px) saturate(1.25);
   box-shadow:
-    0 24px 80px rgba(0, 0, 0, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(18px);
+    inset 0 1px 0 rgb(255 255 255 / 0.14),
+    inset 0 0 0 4px rgb(28 26 23 / 0.18),
+    0 24px 48px -28px rgb(0 0 0 / 0.6);
+}
+
+/* Portrait: warm, slightly faded print so the photo sits inside the palette. */
+
+.portrait-photo {
+  filter: grayscale(0.3) sepia(0.3) contrast(1.06) saturate(1.05)
+    brightness(0.9);
+}
+
+.portrait-tint {
+  background:
+    linear-gradient(
+      180deg,
+      rgb(240 160 90 / 0.2),
+      rgb(28 26 23 / 0.1) 45%,
+      rgb(59 127 120 / 0.38)
+    );
+  mix-blend-mode: multiply;
+}
+
+/* Halftone dot field, a nod to mid-century print. */
+
+.halftone {
+  background-image: radial-gradient(
+    rgb(240 232 216 / 0.45) 1.2px,
+    transparent 1.4px
+  );
+  background-size: 8px 8px;
+}
+
+@keyframes slow-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.slow-spin {
+  animation: slow-spin 90s linear infinite;
 }
 
 /* Accessibility */

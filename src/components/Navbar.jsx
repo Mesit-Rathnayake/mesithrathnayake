@@ -1,71 +1,107 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Menu, X } from "lucide-react"
+import { profile } from "../data/portfolio"
 
 const navLinks = [
-  { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
-  { name: "Activity", href: "#activity" },
-  { name: "Experience", href: "#experience" },
-  { name: "Contact", href: "#contact" },
+  { name: "Work", id: "work" },
+  { name: "About", id: "about" },
+  { name: "Skills", id: "skills" },
+  { name: "Activity", id: "activity" },
+  { name: "Experience", id: "experience" },
+  { name: "Contact", id: "contact" },
 ]
+
+const clockFormat = new Intl.DateTimeFormat("en-GB", {
+  hour: "2-digit",
+  minute: "2-digit",
+  timeZone: profile.timezone,
+})
+
+const getTime = () => clockFormat.format(new Date())
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const [active, setActive] = useState("")
+  const [time, setTime] = useState(getTime)
+
+  useEffect(() => {
+    const timer = setInterval(() => setTime(getTime()), 30000)
+    return () => clearInterval(timer)
+  }, [])
+
+  useEffect(() => {
+    const sections = navLinks
+      .map((link) => document.getElementById(link.id))
+      .filter(Boolean)
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(entry.target.id)
+        })
+      },
+      { rootMargin: "-45% 0px -50% 0px" }
+    )
+
+    sections.forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
+  }, [])
 
   return (
-    <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-neutral-950/90 backdrop-blur-md">
-      <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
-        <a
-          href="#home"
-          className="text-xl font-bold tracking-tight text-white"
-        >
-          M<span className="text-amber-400">R.</span>
+    <header className="fixed left-0 top-0 z-50 w-full border-b border-line bg-bg/55 backdrop-blur-xl">
+      <nav className="mx-auto flex h-14 max-w-[1400px] items-center justify-between px-6 md:px-10">
+        <a href="#home" className="text-sm font-semibold tracking-tight">
+          {profile.name}
         </a>
 
-        <div className="hidden items-center gap-8 md:flex">
+        <ul className="hidden items-center gap-7 md:flex">
           {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-sm font-medium text-neutral-400 transition hover:text-amber-400"
-            >
-              {link.name}
-            </a>
+            <li key={link.id}>
+              <a
+                href={`#${link.id}`}
+                className={`label transition-colors hover:text-fg ${
+                  active === link.id ? "!text-accent" : ""
+                }`}
+              >
+                {link.name}
+              </a>
+            </li>
           ))}
-        </div>
+        </ul>
 
-        <a
-          href="#contact"
-          className="hidden rounded-full border border-amber-400 px-5 py-2 text-sm font-semibold text-amber-400 transition hover:bg-amber-400 hover:text-neutral-950 md:block"
-        >
-          Let&apos;s Talk
-        </a>
+        <p className="label hidden tabular-nums md:block">
+          {profile.location} {time}
+        </p>
 
         <button
           type="button"
           aria-label="Toggle menu"
-          onClick={() => setIsOpen(!isOpen)}
-          className="text-white md:hidden"
+          aria-expanded={isOpen}
+          onClick={() => setIsOpen((open) => !open)}
+          className="md:hidden"
         >
-          {isOpen ? <X size={26} /> : <Menu size={26} />}
+          {isOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </nav>
 
       {isOpen && (
-        <div className="border-t border-white/10 bg-neutral-950 px-6 py-6 md:hidden">
-          <div className="flex flex-col gap-5">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className="text-neutral-300 transition hover:text-amber-400"
-              >
-                {link.name}
-              </a>
+        <div className="absolute left-0 top-14 h-[calc(100vh-3.5rem)] w-full bg-bg/90 px-6 py-8 backdrop-blur-xl md:hidden">
+          <ul className="flex flex-col">
+            {navLinks.map((link, index) => (
+              <li key={link.id} className="border-b border-line">
+                <a
+                  href={`#${link.id}`}
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-baseline gap-4 py-5 text-3xl font-semibold tracking-tight"
+                >
+                  <span className="label">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  {link.name}
+                </a>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       )}
     </header>

@@ -1,156 +1,126 @@
-import { ArrowUpRight, Mail } from "lucide-react"
-import { FaGithub, FaLinkedinIn } from "react-icons/fa"
-import TextPressure from "./TextPressure"
-import TerminalCard from "./TerminalCard"
-
-const focusAreas = [
-  "Artificial Intelligence",
-  "Machine Learning",
-  "Software Engineering",
-  "DevOps & Cloud",
-  "Computer Vision",
-  "Creative Technology",
-]
+import { ArrowDown, ArrowUpRight, Download } from "lucide-react"
+import TechText from "./TechText"
+import Portrait from "./Portrait"
+import Starburst from "./Starburst"
+import { profile } from "../data/portfolio"
+import { downloadCV } from "../utils/download"
 
 function Hero() {
   return (
-    <section
-      id="home"
-      className="relative flex min-h-screen items-center overflow-hidden px-6 pb-16 pt-32 lg:px-8"
-    >
-      <div className="hero-grid absolute inset-0 opacity-50" />
+    <section id="home" className="px-6 pb-16 pt-24 md:px-10">
+      <h1 className="sr-only">
+        {profile.name} — Computer Engineering undergraduate
+      </h1>
 
-      <div className="absolute -left-32 top-40 h-80 w-80 rounded-full bg-amber-400/10 blur-3xl" />
-      <div className="absolute -bottom-32 -right-24 h-96 w-96 rounded-full bg-orange-500/10 blur-3xl" />
-
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-16 lg:grid-cols-2">
-        <div>
-          <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-neutral-300">
-            <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
-            Open to professional opportunities and collaborations
-          </div>
-
-          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-amber-400">
-            Computer Engineering Undergraduate
+      <div className="mx-auto grid max-w-[1400px] items-end gap-14 lg:min-h-[calc(100vh-10rem)] lg:grid-cols-12 lg:gap-10">
+        <div className="lg:col-span-8">
+          <p className="label flex items-center gap-2">
+            <Starburst className="h-3.5 w-3.5 text-accent" />
+            Portfolio / 2026
           </p>
 
-          <div className="relative my-4 h-28 w-full max-w-xl sm:h-36 md:h-44 lg:h-48">
-            <TextPressure
+          <div className="relative mt-6 h-[clamp(190px,32vh,340px)] w-full">
+            <TechText
               text="MESITH"
-              flex
-              alpha={false}
-              stroke={false}
-              width
-              weight
-              italic
-              radius={0.5}
-              smoothing={0.5}
-              idle="wave"
-              idleSpeed={1}
-              clickRipple
-              textColor="#ffffff"
-              strokeColor="#ff5a1f"
-              strokeWidth={3}
-              minFontSize={36}
-              scale={false}
+              fontWeight={800}
+              fontSize={600}
+              letterSpacing={-0.04}
+              color="#f0e8d8"
+              accentColor="#f0642b"
+              reveal="letter"
+              dashLength={4}
+              dashGap={2}
+              strokeWidth={1.5}
+              specks={12}
+              selection
+              labels
+              draggable
+              clickKick
+              sweep
+              bounce={0.4}
+              intro="none"
+              guides={false}
             />
           </div>
 
-          <p className="text-2xl font-bold tracking-tight text-neutral-400 sm:text-3xl lg:text-4xl">
-            Building intelligent software.
+          <p className="label mt-2 text-dim">
+            Hover, click or drag the letters
           </p>
 
-          <p className="mt-7 max-w-2xl text-base leading-8 text-neutral-400 sm:text-lg">
-            A Computer Engineering undergraduate passionate about artificial
-            intelligence, software engineering, DevOps, computer vision and
-            scalable systems.
+          <p className="mt-8 max-w-xl text-xl font-medium leading-snug tracking-tight md:text-2xl">
+            {profile.headline}
           </p>
 
-          <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-            <a
-              href="#projects"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-400 px-7 py-3.5 font-semibold text-neutral-950 transition hover:bg-amber-300"
-            >
-              Explore My Work
-              <ArrowUpRight size={18} />
-            </a>
+          <div className="glass mt-8 grid gap-6 p-5 sm:grid-cols-3">
+            <div>
+              <p className="label">Now</p>
+              <p className="mt-2 flex items-start gap-2">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                {profile.now}
+              </p>
+            </div>
 
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center rounded-full border border-white/10 px-7 py-3.5 font-semibold text-white transition hover:border-white/30 hover:bg-white/5"
-            >
-              Contact Me
-            </a>
-          </div>
+            <div>
+              <p className="label">Based in</p>
+              <p className="mt-2">{profile.location}</p>
+            </div>
 
-          <div className="mt-10 flex gap-3">
-            <a
-              href="https://github.com/Mesit-Rathnayake"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GitHub"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-neutral-400 transition hover:border-amber-400 hover:text-amber-400"
-            >
-              <FaGithub size={19} />
-            </a>
-
-            <a
-              href="https://www.linkedin.com/in/mesith-rathnayake-37647a213/?skipRedirect=true"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-neutral-400 transition hover:border-amber-400 hover:text-amber-400"
-            >
-              <FaLinkedinIn size={19} />
-            </a>
-
-            <a
-              href="mailto:mesithrathnayake0930@gmail.com"
-              aria-label="Email"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-neutral-400 transition hover:border-amber-400 hover:text-amber-400"
-            >
-              <Mail size={19} />
-            </a>
+            <ul className="flex flex-col gap-1.5">
+              <li>
+                <a
+                  href="#work"
+                  className="group inline-flex items-center gap-1.5 transition-colors hover:text-accent"
+                >
+                  Selected work
+                  <ArrowDown
+                    size={16}
+                    className="transition-transform group-hover:translate-y-0.5"
+                  />
+                </a>
+              </li>
+              <li>
+                <a
+                  href={profile.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 text-muted transition-colors hover:text-accent"
+                >
+                  GitHub
+                  <ArrowUpRight size={16} />
+                </a>
+              </li>
+              <li>
+                <a
+                  href={profile.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 text-muted transition-colors hover:text-accent"
+                >
+                  LinkedIn
+                  <ArrowUpRight size={16} />
+                </a>
+              </li>
+              <li>
+                <a
+                  href={profile.cv}
+                  download="Mesith-Rathnayake-CV.pdf"
+                  onClick={(e) =>
+                    downloadCV(e, profile.cv, "Mesith-Rathnayake-CV.pdf")
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-muted transition-colors hover:text-accent"
+                >
+                  Download CV
+                  <Download size={15} />
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div className="relative hidden lg:block">
-          <div className="glass-panel rounded-[2rem] p-8">
-            <div className="mb-8 flex items-start justify-between">
-              <div>
-                <p className="text-sm text-neutral-500">
-                  Current focus
-                </p>
-
-                <h2 className="mt-1 text-2xl font-semibold text-white">
-                  Creative Engineering
-                </h2>
-              </div>
-
-              <span className="rounded-full border border-amber-400/20 bg-amber-400/10 px-3 py-1 text-xs font-medium text-amber-300">
-                2026
-              </span>
-            </div>
-
-            <div className="space-y-3">
-              {focusAreas.map((area, index) => (
-                <div
-                  key={area}
-                  className="flex items-center justify-between rounded-2xl border border-white/5 bg-black/20 px-5 py-4"
-                >
-                  <span className="font-medium text-neutral-200">
-                    {area}
-                  </span>
-
-                  <span className="text-xs text-neutral-600">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            <TerminalCard className="mt-7" />
-          </div>
+        <div className="lg:col-span-4">
+          <Portrait />
         </div>
       </div>
     </section>
